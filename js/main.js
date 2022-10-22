@@ -2,6 +2,27 @@ const elList1 = document.querySelector('.news-list');
 const elList2 = document.querySelector('.world-news-list');
 const elList3 = document.querySelector('.basic-news-list');
 
+const axios = {
+	get: (link) => {
+		return new Promise((resolve, reject) => {
+			const newReq = new XMLHttpRequest();
+
+			newReq.open('GET', link);
+			// newReq.responseType = 'json'
+			newReq.onload = () => {
+				resolve(JSON.parse(newReq.response));
+			};
+			newReq.onerror = () => {
+				reject('xatolik bizda');
+			};
+			newReq.onabort = () => {
+				reject('xatolik serverda');
+			};
+			newReq.send();
+		});
+	},
+};
+
 function renderFuncOne(array, node) {
 	node.innerHTML = '';
 	array.forEach((item) => {
@@ -77,27 +98,6 @@ function renderFuncThree(array, node) {
 		`;
 	});
 }
-
-const axios = {
-	get: (link) => {
-		return new Promise((resolve, reject) => {
-			const newReq = new XMLHttpRequest();
-
-			newReq.open('GET', link);
-			// newReq.responseType = 'json'
-			newReq.onload = () => {
-				resolve(JSON.parse(newReq.response));
-			};
-			newReq.onerror = () => {
-				reject('xatolik bizda');
-			};
-			newReq.onabort = () => {
-				reject('xatolik serverda');
-			};
-			newReq.send();
-		});
-	},
-};
 
 async function getData() {
 	try {
