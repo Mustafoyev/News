@@ -17,7 +17,7 @@ function renderFuncOne(array, node) {
 				<img
 					class="news-img"
 					src="${item.urlToImage}"
-					alt="germania"
+					alt="news image"
 					width="360"
 					height="165"
 				/>
@@ -39,7 +39,7 @@ function renderFuncTwo(array, node) {
 					<img
 					class="world-news-image"
 					src="${el.urlToImage}"
-					alt="the plane is flying over the sky"
+					alt="news image"
 					width="210"
 					height="165"
 					/>
@@ -104,17 +104,17 @@ async function getData() {
 		const data1 = await axios.get(
 			'https://newsapi.org/v2/everything?q=apple&from=2022-10-21&to=2022-10-21&sortBy=popularity&apiKey=ed1c6b7feeb0464d83d7da2455356ade',
 		);
-		renderFuncOne(data1.articles, elList1);
+		renderFuncOne(data1?.articles, elList1);
 
 		const data2 = await axios.get(
 			'https://newsapi.org/v2/everything?q=tesla&from=2022-09-22&sortBy=publishedAt&apiKey=ed1c6b7feeb0464d83d7da2455356ade',
 		);
-		renderFuncTwo(data2.articles, elList2);
+		renderFuncTwo(data2?.articles, elList2);
 
 		const data3 = await axios.get(
 			'https://newsapi.org/v2/everything?domains=wsj.com&apiKey=ed1c6b7feeb0464d83d7da2455356ade',
 		);
-		renderFuncThree(data3.articles, elList3);
+		renderFuncThree(data3?.articles, elList3);
 	} catch (error) {
 		console.log(error);
 	}
